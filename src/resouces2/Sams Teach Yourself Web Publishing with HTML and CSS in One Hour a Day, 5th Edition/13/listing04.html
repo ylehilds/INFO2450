@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st July 2002), see www.w3.org">
+<title>Random Link Generator</title>
+
+<script type="text/javascript" language="JavaScript">
+var mylinks = new Array("http://www.netscape.com/",
+                        "http://www.lne.com/Web/",
+                        "http://java.sun.com/",
+                        "http://www.realaudio.com/",
+                        "http://www.worlds.com/");
+function picklink() 
+{
+  var linkselect = Math.floor(Math.random() * mylinks.length);
+  return (mylinks[linkselect]);
+}
+</script>
+</head>
+<body>
+<h1>My random link generator</h1>
+
+<p>Visit a <a href="dummy.html" onclick=
+"this.href=picklink()">randomly selected</a> site from my list of
+favorites.</p>
+</body>
+</html>
+

@@ -1,0 +1,121 @@
+﻿body 
+{
+    text-align: center;
+    margin: 0px;
+    color: black; 
+    background-color: #ddddee;
+
+}
+a: link { color: blue;}
+a: active { color: red; }
+a: visited { color: green; }
+a: hover { color: yellow; }
+
+#container
+{  text-align: center;
+   width: 955px; 
+   margin: 0px auto;
+   background-image:url("Images/testp8.gif");
+   background-repeat: no-repeat;
+   overflow: hidden;
+   background-color:#ddddee;
+}
+#header
+{ 
+     padding: 5px; text-align: center;
+}
+#maincontent
+{  
+    text-align: left;
+}
+
+#footer
+{ 
+    text-align: center;
+}
+
+#E
+{
+    color: #ee2211; font-style: italic; font-family: Geneva, Trebuchet, Georgia;
+}
+#X
+{
+    color:#ffaa00; font-style:italic; font-family: Geneva, Trebuchet, Georgia;
+}
+#T
+{
+    color:#ffff00; font-style:italic; font-family: Geneva, Trebuchet, Georgia;
+}
+#R
+{
+    color:#77ff44; font-style:italic; font-family: Geneva, Trebuchet, Georgia;
+}
+#E1
+{
+    color:#22cc11; font-style:italic; font-family: Geneva, Trebuchet, Georgia;
+}
+#M
+{
+    color:#4466dd; font-style:italic; font-family: Geneva, Trebuchet, Georgia;
+}
+#E2
+{
+    color:#880099; font-style:italic; font-family: Geneva, Trebuchet, Georgia;
+}
+#OrangeHoney
+{
+    color:#ff7700; font-style:italic; font-family: Geneva, Trebuchet, Georgia;
+}
+.regtext
+{
+    font-family: Geneva, Trebuchet, Georgia; color:black;
+}
+strong, cite, blockquote , p
+{
+    font-family:Veranda,Courier,sans-serif;
+}
+.comment
+{
+    font-family: Helvitica, Arial, Futura; color:#1100ff;
+}
+ul li.bullets
+{
+    font-family:Veranda,Courier,sans-serif;
+}
+.button 
+{
+    border: 2px inset #CCCCCC;
+    width: 100px;
+    padding: 3px 15px;
+    background-color: blue;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+a.button:link
+{
+    color: #FFFFFF;
+}
+a.button:visited
+{
+    color: #FFFF00;
+}
+a.button:active
+{
+    color: #FF0000;
+}
+a.button:hover
+{
+    color: #66CC33;
+    border: 2px outset #CCCCCC;
+    background-color: #000066;
+}
+.tab
+{
+    font-family: sans-serif; font-size:125%;
+}
+
+

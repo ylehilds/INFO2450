@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>DOM Example</title>
+<script language="JavaScript">
+
+function changeBgColor(newColor)
+{
+    if (document.body) 
+    {
+        eval('document.body.bgColor="' + newColor + '"');
+    }
+}
+
+function tackOn(headingText)
+{
+    if (document.body)
+    {
+        if (headingText)
+        {
+            var newHeading = document.createElement("h1");
+            someText = document.createTextNode(headingText);
+            newHeading.appendChild(someText);
+            document.body.appendChild(newHeading);
+        }
+    }
+}
+
+function addStuff()
+{
+    if (document.body)
+    {
+        var newParagraph = document.createElement("p");
+        someText = document.createTextNode("The quick brown fox ");
+        newParagraph.appendChild(someText);
+        var newElement = document.createElement("em");
+        someText = document.createTextNode("jumped over");
+        newElement.appendChild(someText);
+        newParagraph.appendChild(newElement);
+        someText = document.createTextNode(" the lazy dog.");
+        newParagraph.appendChild(someText);
+        document.body.appendChild(newParagraph);
+    }
+}
+
+function setHeadingColors()
+{
+    var headings = document.getElementsByTagName("h1");
+
+    for (var i = 0; i < headings.length; i++)
+    {
+        headings.item(i).style.color = "yellow";
+    }
+}
+
+</script>
+</head>
+<body>
+
+<form>
+    Background color: 
+    <select onchange="changeBgColor(this.options.item(this.selectedIndex).value);">
+        <option value="white">white</option>
+        <option value="red">red</option>
+        <option value="blue">blue</option>
+    </select><br />
+
+    Add heading: 
+    <input type="text" value="Spam" id="newHeading" />
+    <input type="button" value="tack it on" 
+        onclick="tackOn(document.getElementById('newHeading').value);" />
+    <br />
+    <input type="button" value="change colors"
+        onclick="setHeadingColors();" />
+
+    <input type="button" value="add stuff"
+        onclick="addStuff();" />
+</form>
+
+</body>
+</html>

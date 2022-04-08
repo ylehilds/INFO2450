@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st July 2002), see www.w3.org">
+<title>JavaScript Rollover Example</title>
+
+<script type="text/javascript" language="JavaScript">
+<!--
+        // Preload the images for the rollover
+        
+        if (document.images) {
+                buttonOn = new Image();
+                buttonOn.src = "on.gif";
+                buttonOff = new Image();
+                buttonOff.src = "off.gif";
+        }
+        
+        // Function to replace the off images with on images.
+        
+        function activate(image_name) {
+                if (document.images) {
+                        document[image_name].src = eval(image_name + "On.src");
+                }
+        }
+        
+        function deactivate(image_name) {
+                if (document.images) {
+                        document[image_name].src = eval(image_name + "Off.src");
+                }
+        }
+// -->
+</script>
+</head>
+<body>
+<a href="rollover.html" onmouseover="activate('button')"
+onmouseout="deactivate('button')"><img name="button" border="0"
+height="100" width="100" src="off.gif"></a>
+</body>
+</html>
+

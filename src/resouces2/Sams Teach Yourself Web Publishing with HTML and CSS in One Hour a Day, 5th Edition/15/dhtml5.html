@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DHTML Test</title>
+<script language="JavaScript">
+
+function hideMenu(idToHide)
+{
+    if (document.childNodes)
+    {
+        document.getElementById(idToHide).style.visibility = 'hidden';
+    }
+}
+
+</script>
+
+<style type="text/css">
+    #menu
+    {
+        font-family: Verdana, sans-serif;
+        padding: 10px; 
+        border: 1px solid black;
+        background-color: #ffc;
+        width: 150px;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        z-index: 5;
+    }
+
+    #menu2
+    {
+        font-family: Verdana, sans-serif;
+        padding: 10px;
+        border: 1px solid black;
+        background-color: #cff;
+        width: 150px;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        z-index: 1;
+    }
+</style>
+</head>
+<body>
+<div onclick="hideMenu('menu2');" id="menu"><b>Links</b><br />
+<a href="http://www.yahoo.com/">Yahoo</a><br />
+<a href="http://www.salon.com/">Salon</a><br />
+<a href="http://www.slashdot.org/">Slashdot</a><br />
+</div>
+<div onclick="hideMenu('menu');" id="menu2"><b>More Links</b><br />
+<a href="http://www.google.com/">Google</a><br />
+<a href="http://www.slate.com/">Slate</a><br />
+<a href="http://www.wired.com/">Wired</a><br />
+</div>
+</body>
+</html>
+

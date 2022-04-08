@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DHTML Test</title>
+<script language="JavaScript">
+function highlightAndPersist(button)
+{
+    button.style.backgroundColor = '#ffc';
+    persist();
+}
+
+function unhighlight(button)
+{
+    button.style.backgroundColor = '#ccf';
+}
+
+function persist()
+{
+    var menu = document.getElementById('menu');
+    var button = document.getElementById('linkbutton');
+    menu.style.position = 'absolute';
+    menu.style.top = (button.offsetTop + button.offsetHeight) + 'px';
+    menu.style.left = (button.offsetLeft) + 'px';
+    menu.style.visibility = 'visible';
+}
+
+function hideSoon()
+{
+    setTimeout("hide()", 1000);
+}
+
+function hide()
+{
+    var menu = document.getElementById('menu');
+    menu.style.visibility = 'hidden';
+}
+</script>
+
+<style type="text/css">
+    body { margin: 0px; }
+    #menu
+    {
+        font-family: Verdana, sans-serif;
+        padding: 10px; 
+        border: 1px solid black;
+        background-color: #ffc;
+        width: 150px;
+        visibility: hidden;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    #navbar
+    {
+        font: 18px Verdana, sans-serif;
+        width: 100%;
+        height: 30px;
+        background-color: #ccf;
+        padding: 0px;
+    }
+
+    .button
+    {
+        width: 80px;
+        height: 30px;
+        text-align: center;
+    }
+
+    p { margin: 10px; }
+</style>
+</head>
+<body>
+<div id="navbar">
+<div id="linkbutton" class="button" onmouseover="highlightAndPersist(this);" 
+    onmouseout="unhighlight(this);">
+<b><a href="" onmouseover="persist();" onclick="return false;">Links</a></b>
+</div>
+</div>
+<div id="menu" onmouseout="hideSoon();" onmouseover="persist();">
+<a onmouseover="persist();" href="http://www.yahoo.com/">Yahoo</a><br />
+<a onmouseover="persist();" href="http://www.salon.com/">Salon</a><br />
+<a onmouseover="persist();" href="http://www.slashdot.org/">Slashdot</a><br />
+</div>
+
+<p>
+Friends, Romans, countrymen, lend me your ears;<br />
+I come to bury Caesar, not to praise him.<br />
+The evil that men do lives after them;<br />
+The good is oft interred with their bones;<br />
+So let it be with Caesar. The noble Brutus<br />
+Hath told you Caesar was ambitious:<br />
+If it were so, it was a grievous fault,<br />
+And grievously hath Caesar answer'd it.<br />
+Here, under leave of Brutus and the rest--<br />
+For Brutus is an honourable man;<br />
+So are they all, all honourable men--<br />
+Come I to speak in Caesar's funeral.<br />
+</p>
+
+</body>
+</html>
+

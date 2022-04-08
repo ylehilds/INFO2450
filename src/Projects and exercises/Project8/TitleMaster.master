@@ -1,0 +1,38 @@
+﻿<%@ Master Language="VB" CodeFile="TitleMaster.master.vb" Inherits="TitleMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Title Master</title>
+    <link href="Slideshow.css" rel="stylesheet" type="text/css" />
+    <meta name="author" content="Lehi Alcantara" />
+	<meta name="class" content="INFO 2450 - Web Content Design" />
+	<meta name="section" content="X01" />
+	<meta name="project" content="Project 8" />
+	<meta name="due_date" content="04/17/2008" />
+	<meta name="instructor" content="Kim Bartholomew" />
+	<meta name="description" content="Master Pages, web pages slides" />
+	<meta name="keywords" content="Project #8, INFO 2450, UVSC, HTML, Web Content Design" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="container">
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
+        
+            <div id="header">
+                <asp:contentplaceholder id="ContentPlaceHolder3" runat="server">
+                </asp:contentplaceholder>
+            </div>
+            
+            <div id="footer">
+                <asp:contentplaceholder id="ContentPlaceHolder2" runat="server">
+                </asp:contentplaceholder>
+            </div>
+    </div>
+    </form>
+</body>
+</html>

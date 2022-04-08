@@ -1,0 +1,1483 @@
+<!-- page/javascriptfunctions.jsp -->
+<!-- applicationframework/CommonHeader.jspi -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- applicationframework/contextPath.jspi -->
+
+
+
+
+
+
+
+<script language="javascript" src="/webct/jslib/sniffer.js"></script>
+<script language="JavaScript">
+function doWindowOpen(win_url,win_name,win_features,set_parent) {
+var new_win
+new_win=window.open(win_url, win_name, win_features)
+if (new_win) {new_win.focus()}
+if (set_parent==1) {
+new_win.par=self
+}
+}
+function showPage(tocID, tocLinkID, pageID, relativePath, anchorValue, target) {
+var filename =relativePath;
+if (window.name == "TOCCONTENTFRAME"
+|| (window.parent != null && window.parent.name=="TOCCONTENTFRAME")) {
+if (tocLinkID > 0) {
+
+var tocURL = "/webct/urw/lc220822991011.tp267263516151/previewtoc.dowebct?TOCId=" + tocID + "&TOCLinkId=" + tocLinkID + "&displayBCInsideFrame=true&relativePath=" + relativePath + "&pageId=" + pageID;
+if (anchorValue != "WEBCT_NO_ANCHOR_VALUE") {
+tocURL = tocURL + "&poundValue=" + anchorValue;
+}
+
+if (parent!= null && parent.BREADCRUMBFRAME != null) {
+parent.parent.location = tocURL + "&targetFrame=" + parent.parent.name + "&displayBCInsideFrame=true";
+return false;
+} else {
+parent.location.href=tocURL;
+return false;
+}
+} else if (pageID > 0) {
+
+var pageURL = "/webct/urw/lc220822991011.tp267263516151/displayContentPage.dowebct?pageID=" + pageID;
+if (anchorValue != "WEBCT_NO_ANCHOR_VALUE") {
+pageURL = pageURL + "#" + anchorValue;
+}
+
+if (parent!= null && parent.BREADCRUMBFRAME != null) {
+parent.location = pageURL + "&targetFrame=" + parent.name + "&displayBCInsideFrame=true";
+return false;
+} else {
+location.href=pageURL;
+}
+}else {
+if (null != relativePath && relativePath.indexOf("RelativeResourceManager?contentID")!= -1) {
+var resURL =  relativePath;
+filename= "page.link.content";
+}else{
+
+relativePath = relativePath.replace(/RelativeResourceManager\/Template\//, "");
+relativePath = escapeForIE(relativePath);
+var resURL = "/webct/urw/lc220822991011.tp267263516151/RelativeResourceManager/Template" + relativePath + ";JSESSIONID=18yvHJHVZ3Lk4VlkT6YF2Jv3nGZ6SZ7FNbkvz1hySZvmTCnpJ5fG!374374746!ct3-node10.uen.org!8080!-1!-137576457!ct4-node15.uen.org!8080!-1!1204357013492";
+}
+if (anchorValue != "WEBCT_NO_ANCHOR_VALUE") {
+resURL = resURL + "#" + anchorValue;
+}
+
+if (parent!= null && parent.BREADCRUMBFRAME != null) {
+filename = filename.replace(/^.*\//, "");
+filename = escapeForIE(filename);
+var fsAction = "/webct/urw/lc220822991011.tp267263516151/simpleBreadcrumbFrameset.dowebct?BOTTOMFRAME_SRC="+resURL+"&BREADCRUMB_NAME="+filename;
+parent.location = fsAction;
+return false;
+} else {
+location.href=resURL;
+}
+}
+} else {
+if (pageID > 0) {
+
+var pageURL = "/webct/urw/lc220822991011.tp267263516151/displayContentPage.dowebct?pageID=" + pageID;
+if (anchorValue != "WEBCT_NO_ANCHOR_VALUE") {
+pageURL = pageURL + "#" + anchorValue;
+}
+
+if (parent!= null && parent.BREADCRUMBFRAME != null) {
+parent.location = pageURL + "&targetFrame=" + parent.name + "&displayBCInsideFrame=true";
+return false;
+} else {
+if (target == 2){
+var win_name = null;
+var win_features = "resizable, scrollbars";
+var set_parent = '1';
+doWindowOpen(pageURL,win_name,win_features,set_parent);
+}else{
+location.href=pageURL;
+}
+}
+} else {
+if (null != relativePath && relativePath.indexOf("RelativeResourceManager?contentID")!= -1) {
+var resURL =  relativePath;
+filename = "page.link.content";
+}else{
+
+relativePath = relativePath.replace(/RelativeResourceManager\/Template\//, "");
+relativePath = escapeForIE(relativePath);
+var resURL = "/webct/urw/lc220822991011.tp267263516151/RelativeResourceManager/Template" + relativePath + ";JSESSIONID=18yvHJHVZ3Lk4VlkT6YF2Jv3nGZ6SZ7FNbkvz1hySZvmTCnpJ5fG!374374746!ct3-node10.uen.org!8080!-1!-137576457!ct4-node15.uen.org!8080!-1!1204357013492";
+}
+if (anchorValue != "WEBCT_NO_ANCHOR_VALUE") {
+resURL = resURL + "#" + anchorValue;
+}
+if (target == 2){
+var win_name = null;
+var win_features = "resizable, scrollbars";
+var set_parent = '1';
+doWindowOpen(resURL,win_name,win_features,set_parent);
+}else if (target == 3){
+
+if (parent!= null && parent.BREADCRUMBFRAME != null) {
+filename = filename.replace(/^.*\//, "");
+filename = escapeForIE(filename);
+var fsAction = "/webct/urw/lc220822991011.tp267263516151/simpleBreadcrumbFrameset.dowebct?BOTTOMFRAME_SRC="+resURL+"&BREADCRUMB_NAME="+filename;
+parent.location = fsAction;
+return false;
+} else {
+location.href=resURL;
+}
+}else{
+location.href=resURL;
+}
+}
+}
+}
+// IE has a feature where non-ascii urlencoded links are unencoded. For example, when passing a
+// japanese filename which has been uncoded we have to call this before generating URLs with the
+// filename
+function escapeForIE(name) {
+if (is_ie) {
+name = escape(name);
+}
+return name;
+}
+</script>
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=UTF8">        
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 12">
+<meta name=Originator content="Microsoft Word 12">
+<link rel=File-List href="Review1_files/filelist.xml">
+<title>ISYS 2450 Midterm 1 Review</title>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="place"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PlaceType"/>
+<o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags"
+ name="PlaceName"/>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>uvsc</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>barthoki</o:LastAuthor>
+  <o:Revision>4</o:Revision>
+  <o:TotalTime>231</o:TotalTime>
+  <o:Created>2006-02-09T23:07:00Z</o:Created>
+  <o:LastSaved>2008-02-16T04:21:00Z</o:LastSaved>
+  <o:Pages>5</o:Pages>
+  <o:Words>2023</o:Words>
+  <o:Characters>11533</o:Characters>
+  <o:Company>uvsc</o:Company>
+  <o:Lines>96</o:Lines>
+  <o:Paragraphs>27</o:Paragraphs>
+  <o:CharactersWithSpaces>13529</o:CharactersWithSpaces>
+  <o:Version>12.00</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<link rel=themeData href="Review1_files/themedata.thmx">
+<link rel=colorSchemeMapping href="Review1_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>BestFit</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="--"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" LatentStyleCount="267">
+  <w:LsdException Locked="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="99" Name="No List"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true"
+   Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="99" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]--><!--[if !mso]><object
+ classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object>
+<style>
+st1\:*{behavior:url(#ieooui) }
+</style>
+<![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611985 1107304683 0 0 159 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";}
+p
+	{mso-style-unhide:no;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+.style1 {
+	font-family: "Arial", "sans-serif";
+	font-size: 14.0pt;
+	color: navy;
+}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="13314"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:16.0pt;font-family:"Arial","sans-serif";
+color:navy'>ISYS <span class=GramE>2450<span style='mso-spacerun:yes'> 
+</span>Midterm</span> 1 Review<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif";color:navy'>Exam Dates: Wednesday, February
+27– Saturday, March 1 ($3.00 exam fee on Saturday<span class=GramE>)</span><br>
+In the Classroom Testing Center located on the North, West corner of campus.<br
+style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]></span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Format of the
+Exam:<span style='mso-spacerun:yes'>  </span>50 multiple choice questions,
+similar to our quizzes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:16.0pt;color:navy'>Rules for taking Online Tests
+in the Testing Center<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Go to the <st1:place w:st="on"><st1:PlaceName w:st="on">UVSC</st1:PlaceName>
+ <st1:PlaceName w:st="on">Testing</st1:PlaceName> <st1:PlaceType w:st="on">Center</st1:PlaceType>
+ </st1:place>, on the North, West corner of campus.<span
+style='mso-spacerun:yes'>  </span>You will tell them your section and show <span
+class=GramE>your</span> ID.<span style='mso-spacerun:yes'>  </span>An exam
+proctor will then bring you to a computer where you will take the online exam.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>You must login our Vista section, go to your course and then
+go to the Assessments area.<span style='mso-spacerun:yes'>  </span>Select the
+exam you wish to take.<span style='mso-spacerun:yes'>  </span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>After logging in, and you have chosen a test, you will need
+to ask the Proctor to enter a password for the test.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>Online tests must be taken with the window maximized.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>You are responsible for submitting the exam properly (make
+sure you save each answer for all questions before clicking the finish button)
+before closing the browser.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>All cell phones must be turned OFF in the testing
+center.<span style='mso-spacerun:yes'>  </span>If you receive a phone call,
+instant message, or access your phone while the exam is opened, you will be
+asked to leave the testing center immediately and you will fail the exam.</p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal>No notes, books or aides are allowed.<span
+style='mso-spacerun:yes'>  </span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=MsoNormal><span style='font-size:16.0pt;color:navy'>Good <span
+class=GramE>Luck !!!!</span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-spacerun:yes'> </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Navigating
+the WWW – HTML &amp; CSS Lesson 1<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+history of the Internet.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+definition of the <b style='mso-bidi-font-weight:normal'>Internet</b>?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the <b
+style='mso-bidi-font-weight:normal'>WWW</b>?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What protocol
+is used to send information on the Web?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Why is the
+WWW a multimedia system?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+parts of a <b style='mso-bidi-font-weight:normal'>URL</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What does a <b
+style='mso-bidi-font-weight:normal'>Web Server</b> do?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What does a <b
+style='mso-bidi-font-weight:normal'>Browser</b> do?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Who controls
+the WWW?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+purpose of the <b style='mso-bidi-font-weight:normal'>W3C</b>?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What
+disciplines are involved in Web development?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are some
+Web-related languages and what are they used for?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Intro to
+HTML &amp; XHTML: HTML &amp; CSS Lesson 3<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is <b
+style='mso-bidi-font-weight:normal'>HTML</b>?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+history of HTML.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Where is HTML
+going?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+standard for this class is <b style='mso-bidi-font-weight:normal'>XHTML 1.0
+Transitional</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Why does HTML
+not describe the page layout?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What format
+is used to store HTML pages?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What
+extension should an HTML page have?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Nesting of
+tags goes from the middle out.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are
+self-terminating tags?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Attributes
+modify a tag.<span style='mso-spacerun:yes'>  </span>Their values must be
+quoted to validate.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Attribute
+values can have a default value.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>The W3C has a
+<span class=SpellE>validator</span> we can use for our pages: <b
+style='mso-bidi-font-weight:normal'>validator.w3.org</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are
+well-formed documents (according to XHTML 1.0 Transitional)?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is
+attribute minimization?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know some of
+the HTML tools and editors.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What does <b
+style='mso-bidi-font-weight:normal'>WYSIWYG</b> mean?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Learning the
+Basics: HTML &amp; CSS Lesson 4<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are
+structure tags or document-level tags?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+DTD tag?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+purpose of the &lt;html&gt; tag?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What should
+go in the &lt;head&gt; of a document?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are some
+guidelines for giving a title to a page?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+purpose of the &lt;meta&gt; tag?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the <b
+style='mso-bidi-font-weight:normal'>&lt;body&gt;</b> tag used for?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are some
+commonly used <b style='mso-bidi-font-weight:normal'>&lt;body&gt;</b> <b
+style='mso-bidi-font-weight:normal'>attributes</b>?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Why are some
+tags <b style='mso-bidi-font-weight:normal'>deprecated</b>?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What <span
+class=GramE>are the purpose</span> of block-level tags or elements?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+heading tags: <b style='mso-bidi-font-weight:normal'>&lt; h1&gt;- &lt;h6&gt; </b>and
+their attributes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the use
+of the <b style='mso-bidi-font-weight:normal'>&lt;p&gt; </b>tag and its
+attributes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>When should
+ordered lists, <b style='mso-bidi-font-weight:normal'>&lt;<span class=SpellE>ol</span><span
+class=GramE>&gt;<span style='font-weight:normal'> ,</span></span></b> be
+used?<span style='mso-spacerun:yes'>  </span>What types of ordered lists are
+there?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>How can you
+change the order of an ordered list?<span style='mso-spacerun:yes'>  </span>How
+can you reset the numbering in the middle of an ordered list?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>When should
+unordered lists, <b style='mso-bidi-font-weight:normal'>&lt;<span class=SpellE>ul</span><span
+class=GramE>&gt;<span style='font-weight:normal'> ,</span></span></b> be
+used?<span style='mso-spacerun:yes'>  </span>What types of unordered lists are
+there?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+use of a definition list, <b style='mso-bidi-font-weight:normal'>&lt;dl<span
+class=GramE>&gt; <span style='font-weight:normal'>?</span></span></b><span
+style='mso-spacerun:yes'>  </span>What <span class=GramE>is</span> the
+definition term and the definition <span class=SpellE>definition</span>?<span
+style='mso-spacerun:yes'>  </span>How do you do a nested ordered list,
+unordered list or definition list?<span style='mso-spacerun:yes'>  </span><b
+style='mso-bidi-font-weight:normal'>It must be placed inside a &lt;<span
+class=SpellE>li</span>&gt; or a &lt;<span class=SpellE>dd</span>&gt; or it will
+not validate.<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>When and how
+are comments used in a document?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Validate
+and Upload: HTML &amp; CSS Lesson 18<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Understand
+the justification for validating your pages.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+W3C?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+URL of the <span class=SpellE>validator</span>?</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+validation standard for the class? Is it more or less strict than other XHTML
+standards?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Where do you
+go in the <span class=SpellE>validator</span> to validate pages stored locally
+on your computer?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What message
+is displayed if your page validates successfully?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What should
+you put in your document after it validates?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+process called that you follow to find and fix errors in your code?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>How do you
+validate your document after it has been loaded on the web server?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know all the
+requirements for "well formed" XHTML code.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+purpose of a web server.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+application that uses the FTP transfer protocol to upload pages called?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+name of a web server called?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What protocol
+do you use to check your project after you upload it to the web server?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Adding
+Links: HTML &amp; CSS Lesson 5</span></b><b style='mso-bidi-font-weight:normal'><u><span
+style='font-family:"Arial","sans-serif"'><o:p></o:p></span></u></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>The <b
+style='mso-bidi-font-weight:normal'>&lt;a&gt;</b> anchor tag is used for
+creating links.<span style='mso-spacerun:yes'>  </span>There is an opening and
+a closing anchor tag, <b style='mso-bidi-font-weight:normal'>&lt;a&gt;</b> and <b
+style='mso-bidi-font-weight:normal'>&lt;/a&gt;</b><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>A link needs
+two things:<span style='mso-spacerun:yes'>  </span>a filename and some
+hypertext.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+use <b style='mso-bidi-font-weight:normal'>relative</b> and <b
+style='mso-bidi-font-weight:normal'>absolute</b> file pathnames.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use relative
+pathnames for pages in your site and absolute pathnames for non-local pages.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Filenames and
+pathnames must be spelled exactly or they usually will not work!!!<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <span
+class=SpellE><b style='mso-bidi-font-weight:normal'>href</b></span> attribute
+to create a link to a file.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;a <span class=SpellE>href</span>=
+“circle.html”&gt; Circles &lt;/a&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Hypertext
+appears between the open and closing anchor tags.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <b
+style='mso-bidi-font-weight:normal'>name</b> attribute to create an internal
+link destination.<span style='mso-spacerun:yes'>  </span>Provide hypertext for
+the link destination.<span style='mso-spacerun:yes'>  </span><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;a name= “top”&gt;My Favorite
+Things &lt;/a&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <span
+class=SpellE><b style='mso-bidi-font-weight:normal'>href</b></span><b
+style='mso-bidi-font-weight:normal'> </b>and the <b style='mso-bidi-font-weight:
+normal'># </b>to jump to an internal link: <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;a <span class=SpellE>href</span>=
+“top”&gt; Return to Top&lt;/a&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>To jump to an
+internal link on another page use the filename and the #name.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;a <span class=SpellE>href</span>=
+“<span class=SpellE>circle.html#top</span>”&gt;My Favorite Things &lt;/a&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+different types of URLs.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Preparing
+to Publish: HTML &amp; CSS Lesson 2<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Decide what
+content to place on pages<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Identify
+target audience<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What browser
+will be used?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What monitor
+size or resolution will be used?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Design based
+on estimated live space of view area<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Set site
+goals<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Organize
+content into main topics<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Decide on
+general structures of pages<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Create site
+navigation plan <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Usability
+Guidelines:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>3 click rule<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Set logical path - scent<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>30 second rule<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Use meaningful titles<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Use navigation bars<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Avoid the “back” button<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Create a look and feel for your site<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Test usability of site<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Basic Design
+Principles<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Use color wisely- Know what each
+color represents or expresses<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Designing above the fold<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Create a navigation plan<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Storyboard your site<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Text
+Formatting: HTML &amp; CSS Lesson 6<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Why are
+text-formatting tags known as inline elements?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+purpose for logical formatting tags?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are
+logical formatting tags used for?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know about
+these logical tags: <b style='mso-bidi-font-weight:normal'>&lt;<span
+class=SpellE>em</span>&gt;, &lt;strong<span class=GramE>&gt; ,</span>
+&lt;code&gt;, &lt;<span class=SpellE>samp</span>&gt; , &lt;<span class=SpellE>kbd</span>&gt;
+, &lt;<span class=SpellE>var</span>&gt;,<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'>&lt;<span class=SpellE><span
+class=GramE>dfn</span></span>&gt; , &lt;cite&gt;, &lt;<span class=SpellE>abbr</span>&gt;
+,<span style='mso-spacerun:yes'>  </span>and &lt;acronym&gt;<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+purpose for physical formatting tags?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are
+physical formatting tags used for?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know about
+these physical tags: <b style='mso-bidi-font-weight:normal'>&lt;b&gt;, &lt;<span
+class=SpellE>i</span>&gt;, &lt;<span class=SpellE>tt</span><span class=GramE>&gt;
+,</span> &lt;u&gt; , &lt;s&gt;, &lt;big&gt;, &lt;small&gt;,<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'>&lt;sub&gt;, &lt;sup&gt;,
+&lt;address&gt;<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know about
+the <b style='mso-bidi-font-weight:normal'>&lt;hr /&gt;</b> tag and its
+attributes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know about
+the <b style='mso-bidi-font-weight:normal'>&lt;<span class=SpellE>br</span>
+/&gt; </b>tag and its attributes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are
+special characters and why are they used?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know about
+the space character <b style='mso-bidi-font-weight:normal'>&amp;<span
+class=SpellE>nbsp</span>;</b> and the copyright character <b style='mso-bidi-font-weight:
+normal'>&amp;copy;<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>and the
+ampersand character &amp;<b style='mso-bidi-font-weight:normal'>amp;<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+use these block-level tags: <b style='mso-bidi-font-weight:normal'>&lt;<span
+class=SpellE>blockquote</span>&gt; and &lt;pre&gt;<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-family:"Arial","sans-serif"'>Character Formatting Using Inline CSS</span></b><span
+style='font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+use the <b style='mso-bidi-font-weight:normal'>&lt;span&gt;</b> tag with inline
+CSS styles.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+use inline styles with other HTML tags like h1, p, or li.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+valid values for the <b style='mso-bidi-font-weight:normal'>text-decoration</b>
+property: <b style='mso-bidi-font-weight:normal'>underline, over-line,
+line-through, and blink</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+valid values for the <b style='mso-bidi-font-weight:normal'>font-style </b>property:
+<b style='mso-bidi-font-weight:normal'>normal, oblique, italic.<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the many
+valid values for the <b style='mso-bidi-font-weight:normal'>font-weight</b>
+property: <b style='mso-bidi-font-weight:normal'>bold, bolder, lighter, 700,
+etc<span class=GramE>.<span style='font-weight:normal'>.</span></span></b><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the 5
+different values for the generic <b style='mso-bidi-font-weight:normal'>font-family</b>
+property: <b style='mso-bidi-font-weight:normal'>fantasy, <span class=SpellE>monospace</span>,
+serif, san-serif, and cursive</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+valid values for the <b style='mso-bidi-font-weight:normal'>font-variant</b>
+property: <b style='mso-bidi-font-weight:normal'>normal, small-caps</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know about
+the <b style='mso-bidi-font-weight:normal'>&lt;font&gt;</b> tag and its face
+and size attributes.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+provide values for modifying fonts using the <b style='mso-bidi-font-weight:
+normal'>font-family</b> property: <b style='mso-bidi-font-weight:normal'>Courier,
+Arial, Veranda, etc<span class=GramE>.<span style='font-weight:normal'>.</span></span></b><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know some of
+the many values for the <b style='mso-bidi-font-weight:normal'>font-size</b>
+property: <b style='mso-bidi-font-weight:normal'>12pt, 5px, 30em, 300%, etc<span
+class=GramE>.<span style='font-weight:normal'>.</span></span></b><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the <span
+class=SpellE>basefont</span>?<span style='mso-spacerun:yes'>  </span>What does
++2 or -1 mean when used as the font size?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>How <span
+class=GramE>does a list of font</span> faces work?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the
+difference between sans-serif and serif fonts?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is the <b
+style='mso-bidi-font-weight:normal'>&lt;div&gt;</b> used for?<span
+style='mso-spacerun:yes'>  </span>What are its attributes?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+valid values for the <b style='mso-bidi-font-weight:normal'>text-align</b>
+property: <b style='mso-bidi-font-weight:normal'>left, right, center, and
+justify</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Good Web
+Pages: HTML &amp; CSS Lesson 16<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+following writing guidelines for and online publications:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Write clearly
+and briefly<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Organize
+pages for quick scanning<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use lists<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use link
+menus<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Don’t bury
+important info in large paragraphs<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Each page
+stands on its own merit - you cannot guarantee an order of pages being viewed<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use emphasis
+sparingly - overused it will make pages unreadable and have less meaning<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Don’t use
+browser specific language on pages - viewer may be using another browser<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Spell check
+and Proof read<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use headings
+as headings<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use a
+consistent layout<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use links
+correctly<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Image
+Guidelines - <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Be careful about image file size -
+affects download time<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Use smaller size images if possible<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Don’t make
+assumptions about viewer’s hardware or plug-ins<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Watch
+backgrounds and link colors - make sure text is readable and links are visible<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know what
+colors symbolize<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Adding
+Images: HTML &amp; CSS Lesson 7
+</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the two
+types of graphics: vector and raster.<b style='mso-bidi-font-weight:normal'><u><o:p></o:p></u></b></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Web pages
+usually use <b style='mso-bidi-font-weight:normal'>raster </b>graphics.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Web color is
+made up of <b style='mso-bidi-font-weight:normal'>RBG</b>- Red, Blue and Green<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>24 bit true
+color is made up of - 8bits Red, 8bits Blue and 8bits Green<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>You can
+display millions of colors using 24 bit color<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Colors can
+have a <b style='mso-bidi-font-weight:normal'>name</b> or a <span class=SpellE><b
+style='mso-bidi-font-weight:normal'>Hexidecimal</b></span><b style='mso-bidi-font-weight:
+normal'> </b>number value<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>There are
+only <b style='mso-bidi-font-weight:normal'>216 </b>Web-safe colors<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+definition of <b style='mso-bidi-font-weight:normal'>dithering</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+definition of <b style='mso-bidi-font-weight:normal'>anti-aliasing</b>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+usual file types for images on the Web: <b style='mso-bidi-font-weight:normal'>GIF,
+JPEG and PNG</b><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are <b
+style='mso-bidi-font-weight:normal'>GIF</b> files usually used for? What is the
+compression scheme for this file type?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are <b
+style='mso-bidi-font-weight:normal'>JPEG</b> files usually used for? What is
+the compression scheme for this file type?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What are <b
+style='mso-bidi-font-weight:normal'>PNG</b> files?<span
+style='mso-spacerun:yes'>  </span>What do we know about this compression
+scheme?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>What is<b
+style='mso-bidi-font-weight:normal'> <span class=SpellE>lossee</span></b> vs.<b
+style='mso-bidi-font-weight:normal'> lossless</b> compression?<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <b
+style='mso-bidi-font-weight:normal'>&lt;<span class=SpellE>img</span>&gt;</b>
+tag for inline images. This is a self-terminating tag.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <span
+class=SpellE><b style='mso-bidi-font-weight:normal'>src</b></span> attribute to
+give the filename for the image to be displayed.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <b
+style='mso-bidi-font-weight:normal'>alt</b> attribute to provide alternative
+text for the image.<span style='mso-spacerun:yes'>  </span>Must use this
+attribute to <b style='mso-bidi-font-weight:normal'>validate</b> the &lt;<span
+class=SpellE>img</span>&gt; tag!!!!<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Images can be
+aligned using the <b style='mso-bidi-font-weight:normal'>align</b> attribute: <b
+style='mso-bidi-font-weight:normal'>top, bottom, <span class=GramE>left(</span>default),
+center, and right.<span style='mso-spacerun:yes'>  </span></b>Left alignment
+wraps text around the right of the image.<span style='mso-spacerun:yes'> 
+</span>Right alignment wraps text around the left of the image.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <b
+style='mso-bidi-font-weight:normal'>border </b>attribute to provide a border or
+no border around image.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use the <b
+style='mso-bidi-font-weight:normal'>width</b> and <b style='mso-bidi-font-weight:
+normal'>height</b> attributes to provide the size of the image in pixels or
+percentage.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Use<b
+style='mso-bidi-font-weight:normal'> <span class=SpellE>hspace</span></b> to
+add room on the top and bottom of the image.<span style='mso-spacerun:yes'> 
+</span>Use <span class=SpellE><b style='mso-bidi-font-weight:normal'>vspace</b></span>
+to add room on the left and right of the image.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+use an image as a link like this:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;a <span class=SpellE>href</span>=
+“circle.html”&gt; &lt;<span class=SpellE>img</span> <span class=SpellE>src</span>=
+“circle.gif<span class=GramE>”<span style='mso-spacerun:yes'>  </span>alt</span>=
+“<span class=SpellE>mycircle</span>”/&gt;&lt;/a&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+add <b style='mso-bidi-font-weight:normal'>background</b> images to the
+&lt;body&gt; of a document.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+tile images as a background.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><b style='mso-bidi-font-weight:normal'><span
+style='font-size:14.0pt;font-family:"Arial","sans-serif";color:navy'>Tables –
+HTML &amp; CSS Lesson 8</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the four
+uses of tables.</span><span style='font-size:14.0pt;font-family:"Arial","sans-serif"'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Creating a
+Data table is covered in this lesson.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>The basis
+structure of tables is rows and columns.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know these
+table tags:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><b style='mso-bidi-font-weight:normal'>&lt;<span
+class=GramE>table</span>&gt; , &lt;/table&gt;<o:p></o:p></b></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;<span class=SpellE><span
+class=GramE>tr</span></span>&gt; , &lt;/<span class=SpellE>tr</span>&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;<span class=SpellE><span
+class=GramE>th</span></span>&gt; , &lt;/<span class=SpellE>th</span>&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>&lt;<span class=GramE>td</span>&gt;
+, &lt;/td&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know how to
+label your table with a caption.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+attributes of &lt;caption&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know these
+table level controls:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=GramE>width</span> (
+number or percentage - width of entire table)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>align (left, center, right)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE>bgcolor</span>
+(hexadecimal value or name of color- background color or entire table)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>border (number of pixels thick)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE>cellpadding</span>
+(distance from cell contents to edges of cell)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE><span
+class=GramE>cellspacing</span></span> ( the amount of space between cells)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know these
+row level controls:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>align (left, right, center -
+horizontal alignment of entire row content)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE><span
+class=GramE>valign</span></span> ( top, middle, bottom, baseline- vertical
+alignment of entire row contents)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE><span
+class=GramE>bgcolor</span></span> ( hexadecimal value or name of color -
+background color of entire row)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know these
+cell level controls:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>align (left, right, center -
+horizontal alignment of cell content)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE><span
+class=GramE>valign</span></span> ( top, middle, bottom, baseline- vertical
+alignment of cell contents)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE><span
+class=GramE>bgcolor</span></span> ( hexadecimal value or name of color -
+background color of cell)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=GramE>width(</span>
+number or percentage- width of individual cell)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=GramE>height</span> (
+number or percentage - height of a cell, entire row has max height of cell)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE><span
+class=GramE>colspan</span></span> ( number- number of columns a cell spans)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span><span class=SpellE>rowspan</span>
+(number - number of rows a cell spans)<o:p></o:p></span></p>
+
+<span style='font-size:12.0pt;font-family:"Arial","sans-serif";mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:EN-US;
+mso-bidi-language:AR-SA'><br clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know the
+priority of level of controls of a table:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Cell attributes have highest
+priority<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Then row attributes<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Then table attributes<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Finally attributes set outside of
+table have lowest priority<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Know these
+advanced table topics:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Grouping and aligning columns - &lt;<span
+class=SpellE>colgroup</span><span class=GramE>&gt; ,</span> &lt;/<span
+class=SpellE>colgroup</span>&gt;<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:2'>                        </span>span - number - number
+of columns<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:2'>                        </span>width - number or
+percentage- width of column<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:2'>                        </span>Use &lt;<span
+class=SpellE>col</span>&gt; to vary the attributes of columns in the group<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Grouping and aligning rows<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:2'>                        </span>&lt;<span class=SpellE>thead</span>&gt;
+- sets apart a head of a table<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:2'>                        </span>&lt;<span class=SpellE>tbody</span>&gt;
+- sets apart the body of a table<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:2'>                        </span>&lt;<span class=SpellE>tfoot</span>&gt;
+- sets apart the footer of the table<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Frame attributes - set how borders
+or frames of table can look<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Rule attributes - draws rules within
+the table<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Text
+Alignment Tables:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Used to align text<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Usually sets border to 0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Empty cells can be used for indentation<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Page Template
+Tables:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Used to layout page content<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Two common layouts: horizontal and
+vertical<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Multipart
+Image Container Tables:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Used to display image slices so page
+loads quicker<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Border, <span class=SpellE>cellpadding</span>
+and <span class=SpellE>cellspacing</span> should all be set to 0<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Make sure there are no extra spaces
+between &lt;<span class=SpellE>img</span>&gt; tag and &lt;td&gt; tags<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'>Tables within
+Tables:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Inner table must be placed within a
+&lt;td&gt; tag!!!<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial","sans-serif"'><span
+style='mso-tab-count:1'>            </span>Allows creation of more complex
+table structures<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

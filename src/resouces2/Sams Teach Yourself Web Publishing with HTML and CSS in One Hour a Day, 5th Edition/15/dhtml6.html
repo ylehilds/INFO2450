@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DHTML Test</title>
+<script language="JavaScript">
+
+function flee(menu)
+{
+    menu.style.left = ((Math.random() * 80) + 10) + '%';
+    menu.style.top = ((Math.random() * 80) + 10) + '%';
+}
+
+</script>
+
+<style type="text/css">
+    #menu
+    {
+        font-family: Verdana, sans-serif;
+        padding: 10px; 
+        border: 1px solid black;
+        background-color: #ffc;
+        width: 150px;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+    }
+</style>
+</head>
+<body>
+<div onmouseover="flee(this);" id="menu"><b>Links</b><br />
+<a href="http://www.yahoo.com/">Yahoo</a><br />
+<a href="http://www.salon.com/">Salon</a><br />
+<a href="http://www.slashdot.org/">Slashdot</a><br />
+</div>
+</body>
+</html>
+

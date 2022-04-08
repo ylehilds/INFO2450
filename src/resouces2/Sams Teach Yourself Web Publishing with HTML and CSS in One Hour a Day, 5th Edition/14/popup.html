@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>Popup example</title>
+        <script type="text/javascript" language="javascript">
+        function popup(url) {
+          mywindow = window.open(url, 'name', 'height=200,width=400');
+          return false;
+        }
+        </script>
+    </head>
+    <body>
+        <h1>Popup Example</h1>
+        
+        <p><a href="popup.html" onclick="popup('popup.html')">Launch popup</a></p>
+    </body>
+</html>
