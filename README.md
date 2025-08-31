@@ -1,4 +1,4 @@
-# INFO2450
+# Web Application Design
 
 A portfolio-ready set of **front-end exercises and mini-projects** focused on core web skills: semantic HTML, modern CSS, vanilla JavaScript, and ASP.NET. Everything is organized under `src/` so you can open, run, and iterate quickly.
 
